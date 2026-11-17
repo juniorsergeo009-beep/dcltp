@@ -1,0 +1,261 @@
+:root {
+    /* Palette de couleurs professionnelle et locale */
+    --primary: #0B7A47;       /* Vert profond (un cran plus foncé : texte blanc lisible) */
+    --primary-light: #E3F4EC;
+    --secondary: #E07A25;     /* Orange terracotta */
+    --bg-color: #F7F8F5;      /* Fond crème chaleureux */
+    --card-bg: #FFFFFF;
+    --text-main: #1F2937;
+    --text-muted: #5B6472;
+    --border-color: #E5E7EB;
+    --danger: #B91C1C;
+    --danger-light: #FEF2F2;
+
+    /* Typographie (polices système en secours si Google Fonts ne charge pas) */
+    --font-heading: 'Outfit', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+    /* Effets */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --radius-lg: 20px;
+    --radius-md: 12px;
+
+    /* Flèche des menus déroulants */
+    --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B6472' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    /* Losanges de pagne tissé, très discrets (aucun fichier à télécharger) */
+    --motif: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 3l11 11-11 11L3 14z' fill='none' stroke='%23fff' stroke-opacity='.09' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding-bottom: calc(90px + env(safe-area-inset-bottom));
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- HEADER --- */
+header {
+    background-color: var(--primary);
+    background-image: var(--motif);
+    color: white;
+    padding: calc(24px + env(safe-area-inset-top)) 20px 24px;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+    box-shadow: 0 10px 15px -3px rgba(11, 122, 71, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bande orange / blanc / vert, discrète, aux couleurs du drapeau */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg,
+        var(--secondary) 0 33.33%,
+        #FFFFFF 33.33% 66.66%,
+        #2FAE72 66.66% 100%);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+}
+
+.logo { font-family: var(--font-heading); font-size: 32px; font-weight: 800; letter-spacing: 1px; line-height: 1; }
+.tagline { font-size: 12px; font-weight: 500; margin-top: 6px; }
+
+.status {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: 0.3s;
+}
+.status.active { background: white; color: var(--primary); border-color: white; }
+
+/* --- NAVIGATION BAS --- */
+nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #FFFFFF;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 5px calc(12px + env(safe-area-inset-bottom));
+    z-index: 100;
+}
+
+nav button {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    flex: 1;
+    min-height: 52px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+nav button.active { color: var(--primary); }
+nav button span { font-size: 22px; line-height: 1; }
+
+/* --- CONTENU PRINCIPAL --- */
+main { max-width: 600px; margin: 0 auto; padding: 24px 16px; }
+
+h1 { font-family: var(--font-heading); font-size: 26px; font-weight: 800; margin-bottom: 6px; color: #111827; }
+h2 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; margin: 28px 0 16px; color: #374151; }
+.subtitle { color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 16px; }
+.small { color: var(--text-muted); font-size: 13px; text-align: center; margin-top: 16px; }
+
+/* --- CARTES (Le cœur du design) --- */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0,0,0,0.02);
+    border-left: 5px solid var(--primary);
+    animation: slideUpFade 0.4s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.person, .invitation { display: flex; gap: 16px; align-items: center; }
+
+.avatar {
+    width: 54px; height: 54px;
+    border-radius: 16px; /* Forme moins ronde, plus moderne */
+    background: var(--primary-light);
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    display: grid; place-items: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    border: 1px solid transparent;
+}
+
+.details { flex: 1; min-width: 0; }
+.name { font-family: var(--font-heading); font-weight: 600; font-size: 16px; color: #111827; }
+.meta { color: var(--text-muted); font-size: 13px; margin-top: 4px; display: flex; align-items: center; gap: 6px; }
+.tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag {
+    background: #F3F4F6;
+    color: #4B5563;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.green-tag { background: var(--primary-light); color: var(--primary); }
+
+/* --- BOUTONS --- */
+button {
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--primary);
+    color: white;
+    padding: 12px 18px;
+    min-height: 44px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:active { transform: scale(0.96); }
+button.secondary { background: #F3F4F6; color: var(--text-main); }
+button.danger { background: var(--danger-light); color: var(--danger); border: 1px solid #FECACA; }
+button.full { width: 100%; margin-top: 16px; padding: 14px; font-size: 15px; }
+
+/* --- FORMULAIRES --- */
+form { display: flex; flex-direction: column; }
+label { font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; margin-top: 12px; }
+input, select, textarea {
+    width: 100%;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    background: #F9FAFB;
+    font-size: 16px; /* 16 px : évite le zoom automatique au clic sur iPhone */
+    font-family: var(--font-body);
+    color: var(--text-main);
+    transition: all 0.2s;
+    -webkit-appearance: none;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+/* La flèche des menus déroulants (retirée par -webkit-appearance: none) */
+select,
+select:focus {
+    background-image: var(--chevron);
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    padding-right: 44px;
+}
+textarea { min-height: 100px; resize: vertical; }
+
+/* Focus clavier visible sur les boutons et liens */
+:focus-visible { outline: 3px solid var(--secondary); outline-offset: 2px; }
+
+/* --- SYSTEME DE TOAST --- */
+#toast-container { position: fixed; top: calc(16px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 10px; width: 90%; max-width: 400px; pointer-events: none; }
+.toast { background: #1F2937; color: white; padding: 14px 20px; border-radius: var(--radius-md); text-align: center; font-size: 14px; font-weight: 500; box-shadow: var(--shadow-md); animation: slideDown 0.3s ease-out, fadeOut 0.3s ease-in 2.7s forwards; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.toast.success { background: var(--primary); }
+.toast.danger { background: var(--danger); }
+@keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes fadeOut { to { opacity: 0; } }
+
+/* --- MODALE --- */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.75); display: flex; justify-content: center; align-items: center; z-index: 10000; }
+.modal.hidden { display: none; }
+.modal-content { background: white; padding: 28px; border-radius: var(--radius-lg); width: 90%; max-width: 360px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); animation: scaleIn 0.2s ease-out; }
+@keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.modal-content h3 { font-family: var(--font-heading); font-size: 20px; margin-bottom: 8px; color: #111827; }
+.modal-content p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
+.modal-actions { display: flex; gap: 12px; }
+.modal-actions button { flex: 1; }
+
+/* Utilitaires */
+.empty { text-align: center; color: var(--text-muted); padding: 30px 20px; font-size: 14px; background: #F9FAFB; border-radius: var(--radius-md); border: 1px dashed var(--border-color); }
+.hidden { display: none !important; }
+
+/* Respect du réglage « réduire les animations » du téléphone */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

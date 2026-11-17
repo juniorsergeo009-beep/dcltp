@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0B7A47">
+    <title>DCLTP! - On donne pas conseils.</title>
+
+    <!-- Polices Google : un poids en moins (Inter 500) pour alléger le téléchargement -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-pro.css">
+</head>
+<body>
+
+<noscript><p style="padding:24px">Active JavaScript pour utiliser DCLTP!.</p></noscript>
+
+<header>
+    <div class="header-content">
+        <div>
+            <div class="logo" id="header-logo">DCLTP!</div>
+            <div class="tagline" id="header-tagline">On donne pas conseils.</div>
+        </div>
+        <div class="status" id="headerStatus" role="status">● Invisible</div>
+    </div>
+</header>
+
+<main id="app"></main>
+<nav id="navigation" aria-label="Navigation principale"></nav>
+
+<div id="toast-container" aria-live="polite"></div>
+
+<div id="confirm-modal" class="modal hidden">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message">
