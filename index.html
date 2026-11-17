@@ -13,8 +13,6 @@
 </head>
 <body>
 
-<noscript><p style="padding:24px">Active JavaScript pour utiliser DCLTP!.</p></noscript>
-
 <header>
     <div class="header-content">
         <div>
@@ -31,7 +29,7 @@
 <div id="toast-container" aria-live="polite"></div>
 
 <div id="confirm-modal" class="modal hidden">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message">
+    <div class="modal-content" role="dialog" aria-modal="true">
         <h3 id="confirm-title">Confirmation</h3>
         <p id="confirm-message">Es-tu sûr ?</p>
         <div class="modal-actions">
@@ -41,21 +39,15 @@
     </div>
 </div>
 
-<!-- LE RADAR A ERREURS -->
-<script>
-    window.onerror = function(msg, url, line, col, error) {
-        alert("🚨 ERREUR JS :\n" + msg + "\n\nLigne : " + line);
-        return false;
-    };
-</script>
+<!-- IMPORTANT : type="module" pour Firebase -->
+<script type="module" src="app.js"></script>
 
-<script src="app.js"></script>
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('✅ Service Worker enregistré !'))
-                .catch(err => console.log('❌ Erreur SW :', err));
+                .then(reg => console.log('✅ Service Worker OK'))
+                .catch(err => console.log('❌ Erreur SW', err));
         });
     }
 </script>

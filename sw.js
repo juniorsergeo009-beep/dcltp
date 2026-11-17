@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dcltp-cache-v4';
+const CACHE_NAME = 'dcltp-cache-v9';
 const urlsToCache = [
   './',
   './index.html',
